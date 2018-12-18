@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ExpandableSearchBar</string>
+    <string name="placeholder">Type anything in our Expandable Search Bar :D</string>
 </resources>
