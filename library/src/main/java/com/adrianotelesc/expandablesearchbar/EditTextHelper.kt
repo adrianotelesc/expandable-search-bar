@@ -1,4 +1,4 @@
-package com.adrianotelesc.library
+package com.adrianotelesc.expandablesearchbar
 
 import android.graphics.PorterDuff
 import android.support.v4.content.ContextCompat

@@ -1,4 +1,4 @@
-package com.adrianotelesc.library;
+package com.adrianotelesc.expandablesearchbar;
 
 import org.junit.Test;
 
