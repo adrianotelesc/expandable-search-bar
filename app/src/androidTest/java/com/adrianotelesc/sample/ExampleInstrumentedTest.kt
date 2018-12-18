@@ -1,4 +1,4 @@
-package com.adrianotelesc.expandablesearchbar
+package com.adrianotelesc.sample
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
