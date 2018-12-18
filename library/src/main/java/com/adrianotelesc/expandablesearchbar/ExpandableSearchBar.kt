@@ -144,16 +144,6 @@ class ExpandableSearchBar(context: Context, attrs: AttributeSet) : ConstraintLay
         }
 
     /**
-     * The tinting color for the text cursor.
-     */
-    private var textCursorColor: Int = 0
-        set(value) {
-            field = value
-            if (!isInEditMode)
-                EditTextHelper.setTextCursorColor(search_bar_input_text, textCursorColor)
-        }
-
-    /**
      * The listener for search actions.
      */
     var onSearchActionListener: OnSearchActionListener? = null
@@ -227,7 +217,6 @@ class ExpandableSearchBar(context: Context, attrs: AttributeSet) : ConstraintLay
         hint = typedArray.getString(R.styleable.ExpandableSearchBar_hint)
         textColor = typedArray.getColor(R.styleable.ExpandableSearchBar_textColor, ContextCompat.getColor(context, R.color.searchBarTextColor))
         hintColor = typedArray.getColor(R.styleable.ExpandableSearchBar_hintColor, ContextCompat.getColor(context, R.color.searchBarHintColor))
-        textCursorColor = typedArray.getColor(R.styleable.ExpandableSearchBar_textCursorTint, ContextCompat.getColor(context, R.color.searchBarCursorColor))
 
         // Recycle array to be re-used later or not.
         typedArray.recycle()

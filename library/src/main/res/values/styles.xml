@@ -12,7 +12,6 @@
         <item name="searchIconTint">@color/searchBarSearchIconTintColor</item>
         <item name="clearIconTint">@color/searchBarClearIconTintColor</item>
         <item name="backIconTint">@color/searchBarBackIconTintColor</item>
-        <item name="textCursorTint">@color/searchBarCursorColor</item>
         <item name="textColor">@color/searchBarTextColor</item>
         <item name="hintColor">@color/searchBarHintColor</item>
     </style>
@@ -23,7 +22,6 @@
         <item name="searchIconTint">@color/searchBarSearchIconTintColorDark</item>
         <item name="clearIconTint">@color/searchBarClearIconTintColorDark</item>
         <item name="backIconTint">@color/searchBarBackIconTintColorDark</item>
-        <item name="textCursorTint">@color/searchBarCursorColorDark</item>
         <item name="textColor">@color/searchBarTextColorDark</item>
         <item name="hintColor">@color/searchBarHintColorDark</item>
     </style>

@@ -21,7 +21,6 @@
         <attr name="textColor" format="color"/>
         <attr name="hint" format="string"/>
         <attr name="hintColor" format="color"/>
-        <attr name="textCursorTint" format="color"/>
 
     </declare-styleable>
 </resources>
