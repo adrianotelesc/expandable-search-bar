@@ -13,7 +13,7 @@
         android:layout_weight="1"
         android:background="@drawable/background_one">
 
-        <com.adrianotelesc.library.ExpandableSearchBar
+        <com.adrianotelesc.expandablesearchbar.ExpandableSearchBar
             style="@style/ExpandableSearchBarDark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,9 +21,7 @@
             app:hint="Search"
             app:isRounded="true"
             app:searchBarBackgroundColor="#50ffffff"
-            app:searchBarBackgroundColorFocused="#64ffffff"
-            app:searchIconTint="@android:color/white"
-            app:textColor="@android:color/white" />
+            app:searchBarBackgroundColorFocused="#64ffffff" />
 
     </android.support.v7.widget.LinearLayoutCompat>
 
@@ -33,18 +31,15 @@
         android:layout_weight="1"
         android:background="@drawable/background_two">
 
-        <com.adrianotelesc.library.ExpandableSearchBar
+        <com.adrianotelesc.expandablesearchbar.ExpandableSearchBar
             style="@style/ExpandableSearchBarDark"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             app:hint="Search"
             app:isRounded="true"
             app:searchBarBackgroundColor="#50ffffff"
-            app:searchBarBackgroundColorFocused="#64ffffff"
-            app:searchIconTint="@android:color/white"
-            app:textColor="@android:color/white" />
+            app:searchBarBackgroundColorFocused="#64ffffff" />
 
     </android.support.v7.widget.LinearLayoutCompat>
 
@@ -54,7 +49,7 @@
         android:layout_weight="1"
         android:background="@drawable/background_three">
 
-        <com.adrianotelesc.library.ExpandableSearchBar
+        <com.adrianotelesc.expandablesearchbar.ExpandableSearchBar
             style="@style/ExpandableSearchBarDark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,9 +57,7 @@
             app:hint="Search"
             app:isRounded="true"
             app:searchBarBackgroundColor="#50ffffff"
-            app:searchBarBackgroundColorFocused="#64ffffff"
-            app:searchIconTint="@android:color/white"
-            app:textColor="@android:color/white" />
+            app:searchBarBackgroundColorFocused="#64ffffff" />
 
     </android.support.v7.widget.LinearLayoutCompat>
 
@@ -74,7 +67,7 @@
         android:layout_weight="1"
         android:background="@drawable/background_four">
 
-        <com.adrianotelesc.library.ExpandableSearchBar
+        <com.adrianotelesc.expandablesearchbar.ExpandableSearchBar
             style="@style/ExpandableSearchBarDark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,9 +75,7 @@
             app:hint="Search"
             app:isRounded="true"
             app:searchBarBackgroundColor="#50ffffff"
-            app:searchBarBackgroundColorFocused="#64ffffff"
-            app:searchIconTint="@android:color/white"
-            app:textColor="@android:color/white" />
+            app:searchBarBackgroundColorFocused="#64ffffff" />
 
     </android.support.v7.widget.LinearLayoutCompat>
 
