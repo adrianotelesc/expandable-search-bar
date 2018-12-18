@@ -1,4 +1,4 @@
-#Expandable Search Bar for Android
+# Expandable Search Bar for Android
 
 This easy to use library will help to add a beautiful customizable Material Design Expandable SearchBar in your project.
 
@@ -11,7 +11,7 @@ This easy to use library will help to add a beautiful customizable Material Desi
 ----------
 
 
-#How to use
+# How to use
 
 **to include SearchBar to your project:**
 
