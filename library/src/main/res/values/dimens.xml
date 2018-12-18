@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="corner_radius_rounded">28dp</dimen>
+    <dimen name="corner_radius_default">8dp</dimen>
+    <dimen name="elevation_default">2dp</dimen>
+</resources>

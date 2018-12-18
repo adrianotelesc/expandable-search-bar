@@ -1,0 +1,34 @@
+<resources>
+    <!-- Base Application Theme -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Expandable Search Bar Light Theme -->
+    <style name="ExpandableSearchBarLight" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="searchBarBackgroundColor">@color/searchBarPrimaryColor</item>
+        <item name="searchIconTint">@color/searchBarSearchIconTintColor</item>
+        <item name="clearIconTint">@color/searchBarClearIconTintColor</item>
+        <item name="backIconTint">@color/searchBarBackIconTintColor</item>
+        <item name="textCursorTint">@color/searchBarCursorColor</item>
+        <item name="textColor">@color/searchBarTextColor</item>
+        <item name="hintColor">@color/searchBarHintColor</item>
+    </style>
+
+    <!-- Expandable Search Bar Dark Theme -->
+    <style name="ExpandableSearchBarDark" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="searchBarBackgroundColor">@color/searchBarPrimaryColorDark</item>
+        <item name="searchIconTint">@color/searchBarSearchIconTintColorDark</item>
+        <item name="clearIconTint">@color/searchBarClearIconTintColorDark</item>
+        <item name="backIconTint">@color/searchBarBackIconTintColorDark</item>
+        <item name="textCursorTint">@color/searchBarCursorColorDark</item>
+        <item name="textColor">@color/searchBarTextColorDark</item>
+        <item name="hintColor">@color/searchBarHintColorDark</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>
