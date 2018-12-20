@@ -4,6 +4,7 @@
 
         <!-- ExpandableSearchBar Base Attributes-->
         <attr name="isRounded" format="boolean"/> //(API 21+ , Will Revert To Default Shape On Lower
+        <attr name="autoCollapse" format="boolean"/>
         <attr name="searchBarBackgroundColor" format="color"/>
         <attr name="searchBarBackgroundColorFocused" format="color"/>
         <attr name="searchBarElevation" format="dimension"/>

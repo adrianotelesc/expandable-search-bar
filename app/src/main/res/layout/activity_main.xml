@@ -16,6 +16,7 @@
         <com.adrianotelesc.expandablesearchbar.ExpandableSearchBar
             style="@style/ExpandableSearchBarDark"
             android:layout_width="match_parent"
+            app:autoCollapse="true"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             app:hint="Search"
@@ -35,6 +36,7 @@
             style="@style/ExpandableSearchBarDark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:autoCollapse="true"
             android:layout_margin="16dp"
             app:hint="Search"
             app:isRounded="true"
@@ -54,6 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            app:autoCollapse="true"
             app:hint="Search"
             app:isRounded="true"
             app:searchBarBackgroundColor="#50ffffff"
@@ -73,6 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             app:hint="Search"
+            app:autoCollapse="true"
             app:isRounded="true"
             app:searchBarBackgroundColor="#50ffffff"
             app:searchBarBackgroundColorFocused="#64ffffff" />

@@ -1,12 +1,14 @@
 package com.adrianotelesc.expandablesearchbar
 
-import android.animation.LayoutTransition
 import android.content.Context
 import android.graphics.PorterDuff
 import android.os.Build
 import android.support.constraint.ConstraintLayout
 import android.support.v4.content.ContextCompat
 import android.text.TextWatcher
+import android.transition.ChangeBounds
+import android.transition.Transition
+import android.transition.TransitionManager
 import android.util.AttributeSet
 import android.view.KeyEvent
 import android.view.View
@@ -148,6 +150,35 @@ class ExpandableSearchBar(context: Context, attrs: AttributeSet) : ConstraintLay
      */
     var onSearchActionListener: OnSearchActionListener? = null
 
+
+    /**
+     * The transition for expand/collapse animation.
+     */
+    private var transition: Transition = ChangeBounds().apply {
+        duration = 300
+        addListener(object : Transition.TransitionListener {
+            override fun onTransitionEnd(transition: Transition?) {
+                if (isExpanded) {
+                    search_bar_input_text.requestFocus()
+                    showKeyboard(search_bar_input_text)
+                } else if (!isAutoCollapse || hasManuallyCollapsed) {
+                    hideKeyboard(search_bar_input_text)
+                }
+            }
+
+            // Unused functions.
+            override fun onTransitionResume(transition: Transition?) = Unit
+
+            override fun onTransitionPause(transition: Transition?) = Unit
+            override fun onTransitionCancel(transition: Transition?) = Unit
+            override fun onTransitionStart(transition: Transition?) = Unit
+        })
+    }
+
+    private var isAutoCollapse: Boolean
+
+    private var hasManuallyCollapsed: Boolean = false
+
     /**
      * Indicates whether the [ExpandableSearchBar] is expanded or not. It is used to switch search
      * bar states.
@@ -156,20 +187,30 @@ class ExpandableSearchBar(context: Context, attrs: AttributeSet) : ConstraintLay
         set(value) {
             field = value
             if (field) {
-                search_bar_input_text.requestFocus()
-                search_bar_card_container.setCardBackgroundColor(searchBarBackgroundColorFocused)
-                search_bar_search_icon.visibility = View.GONE
-                search_bar_input_container.visibility = View.VISIBLE
+                expand()
                 onSearchActionListener?.onSearchStateChanged(true)
             } else {
-                search_bar_input_text.clearFocus()
-                search_bar_input_text.text.clear()
-                search_bar_card_container.setCardBackgroundColor(searchBarBackgroundColor)
-                search_bar_search_icon.visibility = View.VISIBLE
-                search_bar_input_container.visibility = View.GONE
+                collapse()
                 onSearchActionListener?.onSearchStateChanged(false)
             }
         }
+
+    private fun collapse() {
+        TransitionManager.beginDelayedTransition(search_bar_card_container, transition)
+        search_bar_input_text.text.clear()
+        search_bar_card_container.layoutParams.width = LayoutParams.WRAP_CONTENT
+        search_bar_card_container.setCardBackgroundColor(searchBarBackgroundColor)
+        search_bar_search_icon.visibility = View.VISIBLE
+        search_bar_input_container.visibility = View.GONE
+    }
+
+    private fun expand() {
+        TransitionManager.beginDelayedTransition(search_bar_card_container, transition)
+        search_bar_card_container.layoutParams.width = 0
+        search_bar_card_container.setCardBackgroundColor(searchBarBackgroundColorFocused)
+        search_bar_search_icon.visibility = View.GONE
+        search_bar_input_container.visibility = View.VISIBLE
+    }
 
     /**
      * The elevation of the [ExpandableSearchBar].
@@ -200,6 +241,7 @@ class ExpandableSearchBar(context: Context, attrs: AttributeSet) : ConstraintLay
 
         // Get base attributes from array.
         isRounded = typedArray.getBoolean(R.styleable.ExpandableSearchBar_isRounded, false)
+        isAutoCollapse = typedArray.getBoolean(R.styleable.ExpandableSearchBar_autoCollapse, false)
         searchBarCornerRadius = typedArray.getDimension(R.styleable.ExpandableSearchBar_searchBarCornerRadius, context.resources.getDimension(R.dimen.corner_radius_default))
         searchBarBackgroundColor = typedArray.getColor(R.styleable.ExpandableSearchBar_searchBarBackgroundColor, ContextCompat.getColor(context, android.R.color.white))
         searchBarBackgroundColorFocused = typedArray.getColor(R.styleable.ExpandableSearchBar_searchBarBackgroundColorFocused, searchBarBackgroundColor)
@@ -221,27 +263,8 @@ class ExpandableSearchBar(context: Context, attrs: AttributeSet) : ConstraintLay
         // Recycle array to be re-used later or not.
         typedArray.recycle()
 
-        postSetup()
-
-    }
-
-    private fun postSetup() {
         setupListeners()
-        setupInputContainer()
-        setupCardView()
-    }
 
-    private fun setupCardView() {
-        val layoutTransition = search_bar_card_container.layoutTransition
-        layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
-    }
-
-    private fun setupInputContainer() {
-        viewTreeObserver.addOnGlobalLayoutListener {
-            val params = search_bar_input_container.layoutParams as LayoutParams
-            params.width = width
-            search_bar_input_container.layoutParams = params
-        }
     }
 
     /**
@@ -268,12 +291,15 @@ class ExpandableSearchBar(context: Context, attrs: AttributeSet) : ConstraintLay
     override fun onClick(view: View) {
         when (view) {
             search_bar_search_icon -> {
-                if (!isExpanded)
+                if (!isExpanded) {
                     isExpanded = true
+                    hasManuallyCollapsed = false
+                }
                 onSearchActionListener?.onButtonClicked(BUTTON_SEARCH)
             }
             search_bar_back_icon -> {
                 isExpanded = false
+                hasManuallyCollapsed = true
                 onSearchActionListener?.onButtonClicked(BUTTON_BACK)
             }
             search_bar_clear_icon -> {
@@ -292,13 +318,18 @@ class ExpandableSearchBar(context: Context, attrs: AttributeSet) : ConstraintLay
     }
 
     override fun onFocusChange(v: View, hasFocus: Boolean) {
-        val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        if (hasFocus) {
-            inputMethodManager.showSoftInput(v, InputMethodManager.SHOW_IMPLICIT)
-        } else {
-            inputMethodManager.hideSoftInputFromWindow(v.windowToken, 0)
+        if (!hasFocus && isAutoCollapse)
             isExpanded = false
-        }
+    }
+
+    private fun hideKeyboard(view: View) {
+        val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    private fun showKeyboard(view: View) {
+        val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
