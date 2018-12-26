@@ -39,6 +39,9 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import kotlinx.android.synthetic.main.search_bar.view.*
 
+/**
+ * An expandable and customizable widget that provides a user interface for the user to enter a search query.
+ */
 class ExpandableSearchBar(context: Context, attrs: AttributeSet) : ConstraintLayout(context, attrs),
         View.OnClickListener, View.OnFocusChangeListener, View.OnKeyListener {
 
